@@ -3,6 +3,11 @@ const employee = require("./lib/Employee");
 const manager = require("./lib/Manager");
 const engineer = require("./lib/Engineer");
 const intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+
+const teamArray = [];
 
 function getTeamInfo () {
     inquirer
@@ -68,8 +73,44 @@ function getTeamInfo () {
             }           
         ])
         .then ((response) => {
-            console.log(response);
+            if (response.empType === 'Manager') {
+                teamArray.push(new Manager(response.name, response.id, response.email, response.officeNumber));
+                console.log(teamArray);
+                addAnotherMember();
+            } else if (response.empType === 'Engineer') {
+                    teamArray.push(new Engineer(response.name, response.id, response.email, response.GitHub));
+                    console.log(teamArray);
+                    addAnotherMember();
+            } else {
+                teamArray.push(new Intern(response.name, response.id, response.email, response.school));
+                console.log(teamArray);
+                addAnotherMember();
+            }
+        })
+        .catch((error) => {
+            console.log('There was an error creating the team member.')
         });
+};
+
+function addAnotherMember() {
+    inquirer
+        .prompt([
+            {
+                type: 'confirm',
+                message: 'Would you like to add another memeber to your team?',
+                name: 'confirmNewMember',
+            }
+        ])
+        .then ((response) => {
+            if(response.confirmNewMember) {
+                getTeamInfo();
+            } else {
+                console.log('Generate HTML function');
+            }
+        })
+        .catch((error) => {
+            console.log("There was an error with addAnotherMember().")
+        })
 }
 
 getTeamInfo();
