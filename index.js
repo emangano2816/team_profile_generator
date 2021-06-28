@@ -88,7 +88,7 @@ function getTeamInfo () {
             }
         })
         .catch((error) => {
-            console.log('There was an error creating the team member.')
+            console.log('There was an error getTeamInfo().')
         });
 };
 
