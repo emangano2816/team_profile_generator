@@ -1,11 +1,11 @@
 const inquirer = require("inquirer");
-const employee = require("./lib/Employee");
-const manager = require("./lib/Manager");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
+const fs = require("fs");
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const generateHTML = require("./src/generateHTML");
+
 
 const teamArray = [];
 
@@ -30,7 +30,7 @@ function getManagerInfo () {
             },
             {
                 type: 'input',
-                message: "What is the manager's email address",
+                message: "What is the manager's email address?",
                 name: 'email',
                 validate: function(text) {
                     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -53,7 +53,8 @@ function getManagerInfo () {
                 teamComplete();
         })
         .catch((error) => {
-            console.log('There was an error getManagerInfo().')
+            console.log('There was an error getManagerInfo().');
+            console.log(error);
         });
 }           
 
@@ -70,12 +71,14 @@ function teamComplete() {
     .then ((response) => {
         if(response.teamComplete ==="My team is complete.") {
             console.log ("Generate HTML function.")
+            createHTMLFile(teamArray);
         } else {
             addAnotherMember();
         }
     })
     .catch((error) => {
         console.log("Error with teamComplete().")
+        console.log(error);
     })
 }
 
@@ -106,7 +109,7 @@ function addAnotherMember() {
             },
             {
                 type: 'input',
-                message: "What is the employee's email address",
+                message: "What is the employee's email address?",
                 name: 'email',
                 validate: function(text) {
                     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -144,9 +147,15 @@ function addAnotherMember() {
              }
         })
         .catch((error) => {
-            console.log('There was an error addAnotherMember().')
+            console.log('There was an error in addAnotherMember().')
+            console.log(error);
         });
 };
 
 getManagerInfo();
 
+function createHTMLFile(teamArray) {
+    fs.writeFile("./dist/index.html", generateHTML.generateHTML(teamArray),(err) => {
+        err ? console.log (err) : console.log("Success! index.html generated. Check in 'dist' folder for file.")
+    })
+}
