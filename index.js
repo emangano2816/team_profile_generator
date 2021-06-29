@@ -9,9 +9,85 @@ const Intern = require("./lib/Intern");
 
 const teamArray = [];
 
-function getTeamInfo () {
+function getManagerInfo () {
     inquirer
         .prompt([
+            {
+                type: 'input',
+                message: "What is the manager's name?",
+                name: 'name',
+                validate: function(text) {
+                    return (text !=='') ? true : 'Employee name is required.';
+                }
+            },
+            {
+                type: 'input',
+                message: "What is the manager's employee ID number?",
+                name: 'id',
+                validate: function(text) {
+                    return (text !=='') ? true : 'Employee ID is required.';
+                }
+            },
+            {
+                type: 'input',
+                message: "What is the manager's email address",
+                name: 'email',
+                validate: function(text) {
+                    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    return (emailPattern.test(text)) ? true : 'Please provide a valid email address for the employee.';
+                }
+            },
+            {
+                type: 'input',
+                message: "What is the employee's office number?",
+                name: 'officeNumber',
+                validate: function(text) {
+                    const phonePattern = /[0-9]/;
+                    return (phonePattern.test(text)) ? true : 'Please provide a valid phone number (i.e., all numerics).';
+                }
+            }
+        ])
+        .then ((response) => {
+                teamArray.push(new Manager(response.name, response.id, response.email, response.officeNumber));
+                console.log(teamArray);
+                teamComplete();
+        })
+        .catch((error) => {
+            console.log('There was an error getManagerInfo().')
+        });
+}           
+
+function teamComplete() {
+    inquirer
+    .prompt([
+        {
+            type: 'list',
+            name: "teamComplete",
+            message: "What would you like to do next?",
+            choices: ["Add a team member.", "My team is complete."],
+        }
+    ])
+    .then ((response) => {
+        if(response.teamComplete ==="My team is complete.") {
+            console.log ("Generate HTML function.")
+        } else {
+            addAnotherMember();
+        }
+    })
+    .catch((error) => {
+        console.log("Error with teamComplete().")
+    })
+}
+
+function addAnotherMember() {
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: "addAnother",
+                message: "Which would you like to add to your team?",
+                choices: ["Engineer","Intern"],
+            },
             {
                 type: 'input',
                 message: "What is the employee's name?",
@@ -22,7 +98,7 @@ function getTeamInfo () {
             },
             {
                 type: 'input',
-                message: "What is the employee's ID number?",
+                message: "What is the employee's employee ID number?",
                 name: 'id',
                 validate: function(text) {
                     return (text !=='') ? true : 'Employee ID is required.';
@@ -38,29 +114,13 @@ function getTeamInfo () {
                 }
             },
             {
-                type: 'list',
-                name: "empType",
-                message: "Select the employee's title.",
-                choices: ["Manager", "Engineer","Intern"],
-            },
-            {
-                type: 'input',
-                message: "What is the employee's office number?",
-                name: 'officeNumber',
-                validate: function(text) {
-                    const phonePattern = /[0-9]/;
-                    return (phonePattern.test(text)) ? true : 'Please provide a valid phone number (i.e., all numerics).';
-                },
-                when: (answers) => answers.empType === 'Manager',
-            },
-            {
                 type: 'input',
                 message: "What is the employee's GitHub username?",
                 name: 'GitHub',
                 validate: function(text) {
                     return (text !== '') ? true: "Please provide the employee's GitHub username."
                 },
-                when: (answers) => answers.empType === 'Engineer',
+                when: (answers) => answers.addAnother === 'Engineer',
             },
             {
                 type: 'input',
@@ -69,49 +129,24 @@ function getTeamInfo () {
                 validate: function(text) {
                     return (text !== "") ? true : "Please provide the name of the school the intern is attending."
                 },
-                when: (answers) => answers.empType === 'Intern',
+                when: (answers) => answers.addAnother === 'Intern',
             }           
         ])
         .then ((response) => {
-            if (response.empType === 'Manager') {
-                teamArray.push(new Manager(response.name, response.id, response.email, response.officeNumber));
-                console.log(teamArray);
-                addAnotherMember();
-            } else if (response.empType === 'Engineer') {
+            if (response.addAnother === 'Engineer') {
                     teamArray.push(new Engineer(response.name, response.id, response.email, response.GitHub));
                     console.log(teamArray);
-                    addAnotherMember();
-            } else {
+                    teamComplete();
+             } else {
                 teamArray.push(new Intern(response.name, response.id, response.email, response.school));
                 console.log(teamArray);
-                addAnotherMember();
-            }
+                teamComplete();
+             }
         })
         .catch((error) => {
-            console.log('There was an error getTeamInfo().')
+            console.log('There was an error addAnotherMember().')
         });
 };
 
-function addAnotherMember() {
-    inquirer
-        .prompt([
-            {
-                type: 'confirm',
-                message: 'Would you like to add another memeber to your team?',
-                name: 'confirmNewMember',
-            }
-        ])
-        .then ((response) => {
-            if(response.confirmNewMember) {
-                getTeamInfo();
-            } else {
-                console.log('Generate HTML function');
-            }
-        })
-        .catch((error) => {
-            console.log("There was an error with addAnotherMember().")
-        })
-}
-
-getTeamInfo();
+getManagerInfo();
 
