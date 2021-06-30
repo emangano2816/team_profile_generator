@@ -12,9 +12,9 @@ function createHTML(teamArray) {
                     <h3 class='title'>${teamArray[i].getRole()}</h3>
                 </div>
                 <div class='employee-info'>
-                    <p><strong>ID: </strong>${teamArray[i].id}</p>
-                    <p><strong>Email: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p><strong>Office #: </strong> <a href="tel:${teamArray[i].officeNumber}">${teamArray[i].officeNumber}</a></p>
+                    <p><strong>Employee ID: </strong>${teamArray[i].id}</p>
+                    <p><strong>Email Address: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
+                    <p><strong>Office Phone: </strong> <a href="tel:${teamArray[i].officeNumber}">${teamArray[i].officeNumber}</a></p>
                 </div>
             </div>`;
             dynamicHTML.push(member);
@@ -26,9 +26,9 @@ function createHTML(teamArray) {
                     <h3 class='title'>${teamArray[i].getRole()}</h3>
                 </div>
                 <div class='employee-info'>
-                    <p><strong>ID: </strong>${teamArray[i].id}</p>
-                    <p><strong>Email: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p><strong>GitHub: </strong> <a href="https://github.com/${teamArray[i].gitHub}" target="_blank" rel="noreferrer noopener" >${teamArray[i].gitHub}</a></p>
+                    <p><strong>Employee ID: </strong>${teamArray[i].id}</p>
+                    <p><strong>Email Address: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
+                    <p><strong>GitHub Account: </strong> <a href="https://github.com/${teamArray[i].gitHub}" target="_blank" rel="noreferrer noopener" >${teamArray[i].gitHub}</a></p>
                 </div>
             </div>`;
             dynamicHTML.push(member);
@@ -40,9 +40,9 @@ function createHTML(teamArray) {
                     <h3 class='title'>${teamArray[i].getRole()}</h3>
                 </div>
                 <div class='employee-info'>
-                    <p><strong>ID: </strong>${teamArray[i].id}</p>
-                    <p><strong>Email: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p><strong>School: </strong> ${teamArray[i].school}</p>
+                    <p><strong>Employee ID: </strong>${teamArray[i].id}</p>
+                    <p><strong>Email Address: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
+                    <p><strong>School Attending: </strong> ${teamArray[i].school}</p>
                 </div>
             </div>`;
             dynamicHTML.push(member);
@@ -80,7 +80,7 @@ function generateHTML(teamArray) {
     <main class='main'>  
     
     <!--dynamic code goes here-->
-    ${dynamicHTML.toString().replace(",","\n")}
+    ${dynamicHTML.toString().replace(/,/g,"\n")}
     
     </main>
 
