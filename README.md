@@ -1,5 +1,7 @@
 # Team Profile Generator
 
+![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 ## Link(s)
 
 1. [GitHub Repository](https://github.com/emangano2816/team_profile_generator)
@@ -38,16 +40,26 @@ THEN I exit the application, and the HTML is generated
 
 ## Achieving Acceptance Criteria
 
-1. 
+1. Upon invoking the application, the user is prompted to enter information about various team members.   Once information has been provided for each team member the application generates an index.html that displays a formatted team roster based on the user input.
+2. In the generated team roster, clicking on the user's email address opens and populates the TO field of the email with the address of the team member.
+3. In the genreated team roster, clicking on the user's GitHub username opens the user's GitHub profile in a new tab.
+4. Upon invoking the application, the user is prompted to enter information about the manager.  Specifically, the application requires information about the manager's name, employee ID, email address, and office number.
+5. After providing the team manager's information, the user is then asked if they would like to add another member to their team or if the team is finished.  If the user chooses to add another team member, they then receive a prompt asking if they would like to add an engineer or an intern.
+6. Upon selecting the option to add an engineer, the user is asked to provide the following information about the engineer: name, employee ID, email address, and GitHub username.  Once this information is provided, the user receives the prompt to: add another team member or team is finished.
+7. Upon selecting the option to add an intern, the user is asked to provide the following information about the intern: name, employee ID, email address, and School.  Once this information is provided, the user receives the prompt to: add another team member or team is finished.
+8. Upon selecting the opption 'team is finished', the application generates an HTML file that includes the user's input.
+
+Additionally, the application uses the Inquirer and Jest packages and includes a class for Employee, Manager, Engineer, and Intern.
 
 ## Tecnhologies Used
 
 1. Node.js
-2. JavaScript
+2. npm (inquirer, jest)
+4. JavaScript
 
 ## Installation
 
-You will need node.js, jest, and the inquirer package to run this application.
+You will need node.js, the Jest package, and the Inquirer package.
 
 ## Video Demonstration
 
