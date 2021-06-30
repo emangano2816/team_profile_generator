@@ -3,7 +3,7 @@
 ## Link(s)
 
 1. [GitHub Repository](https://github.com/emangano2816/team_profile_generator)
-2. [Generated index.html](/README_SAMPLE.md)
+2. [Generated index.html](/dist/index.html)
 
 
 ## User Story
