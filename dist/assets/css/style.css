@@ -2,7 +2,7 @@
     --Primary: #d1becf;
     --Light: #d3f8e2;
     --Dark: #5b4e77;
-    --Darker: #373f51;
+    --Darkest: #373f51;
     --Lightest: #c9b6be;
 }
 
@@ -12,7 +12,7 @@ body {
 }
 
 .header {
-    background-color: var(--Darker);
+    background-color: var(--Darkest);
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ h1 {
     margin-bottom: 50px;
     margin-left: 10px;
 
-    width: 300px;
+    width: 350px;
 }
 
 .employee-header {
@@ -62,8 +62,9 @@ h1 {
 }
 
 .employee-info {
-    color: var(--Darker);
+    color: var(--Darkest);
     padding-top: 20px;
+    padding-bottom: 20px;
     line-height: 2.5em;
 }
 
@@ -79,6 +80,10 @@ h1 {
 
 p {
     font-size: 1.5em;
+}
+
+a {
+    color: var(--Darkest);
 }
 
 a:hover {
