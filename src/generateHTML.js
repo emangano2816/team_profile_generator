@@ -14,7 +14,7 @@ function createHTML(teamArray) {
                 <div class='employee-info'>
                     <p><strong>ID: </strong>${teamArray[i].id}</p>
                     <p><strong>Email: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p><strong>Office number: </strong> <a href="tel:${teamArray[i].officeNumber}">${teamArray[i].officeNumber}</a></p>
+                    <p><strong>Office #: </strong> <a href="tel:${teamArray[i].officeNumber}">${teamArray[i].officeNumber}</a></p>
                 </div>
             </div>`;
             dynamicHTML.push(member);
@@ -28,7 +28,7 @@ function createHTML(teamArray) {
                 <div class='employee-info'>
                     <p><strong>ID: </strong>${teamArray[i].id}</p>
                     <p><strong>Email: </strong><a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p><strong>GitHub: </strong> <a href="https://github.com/${teamArray[i].gitHub}">${teamArray[i].gitHub}</a></p>
+                    <p><strong>GitHub: </strong> <a href="https://github.com/${teamArray[i].gitHub}" target="_blank" rel="noreferrer noopener" >${teamArray[i].gitHub}</a></p>
                 </div>
             </div>`;
             dynamicHTML.push(member);
@@ -80,7 +80,7 @@ function generateHTML(teamArray) {
     <main class='main'>  
     
     <!--dynamic code goes here-->
-    ${dynamicHTML.toString()}
+    ${dynamicHTML.toString().replace(",","\n")}
     
     </main>
 
