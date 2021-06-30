@@ -63,7 +63,7 @@ You will need node.js, the Jest package, and the Inquirer package.
 
 ## Video Demonstration
 
-https://user-images.githubusercontent.com/79860046/123151253-44f00a00-d431-11eb-8d36-ad7c950fee6e.mp4
+https://user-images.githubusercontent.com/79860046/123992101-4ec9be00-d999-11eb-9b8a-f394bfdd35e4.mp4
 
 ## License
 
