@@ -47,7 +47,7 @@ THEN I exit the application, and the HTML is generated
 5. After providing the team manager's information, the user is then asked if they would like to add another member to their team or if the team is finished.  If the user chooses to add another team member, they then receive a prompt asking if they would like to add an engineer or an intern.
 6. Upon selecting the option to add an engineer, the user is asked to provide the following information about the engineer: name, employee ID, email address, and GitHub username.  Once this information is provided, the user receives the prompt to: add another team member or team is finished.
 7. Upon selecting the option to add an intern, the user is asked to provide the following information about the intern: name, employee ID, email address, and School.  Once this information is provided, the user receives the prompt to: add another team member or team is finished.
-8. Upon selecting the opption 'team is finished', the application generates an HTML file that includes the user's input.
+8. Upon selecting the option 'team is finished', the application generates an HTML file that includes the user's input.
 
 Additionally, the application uses the Inquirer and Jest packages and includes a class for Employee, Manager, Engineer, and Intern.
 
